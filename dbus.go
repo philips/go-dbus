@@ -252,7 +252,7 @@ func (p *Connection) _MessageDispatch(msg *Message) {
 			}
 		}
 	case TypeError:
-		fmt.Println("ERROR")
+		fmt.Println("ERROR:", msg)
 	}
 }
 
