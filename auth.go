@@ -18,6 +18,8 @@ type Authenticator interface {
 	ProcessData([]byte) ([]byte, error)
 }
 
+var Authenticators = []Authenticator { new(AuthDbusCookieSha1), new(AuthExternal) }
+
 type AuthExternal struct {
 }
 
