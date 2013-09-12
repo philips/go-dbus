@@ -16,4 +16,15 @@ func TestToString(t *testing.T) {
 	if mr.String() != verifyStr {
 		t.Error("#1 Failed")
 	}
+
+	verifyStrEmpty := "type='signal',interface='org.freedesktop.DBus',member='Foo'"
+
+	mr = MatchRule{
+		Type:      TypeSignal,
+		Interface: "org.freedesktop.DBus",
+		Member:    "Foo"}
+
+	if mr.String() != verifyStrEmpty {
+		t.Error("#1 Failed")
+	}
 }

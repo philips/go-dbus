@@ -13,14 +13,17 @@ type MatchRule struct {
 	Path      string
 }
 
-// A string representation af the MatchRule (D-Bus variant map).
+// A string representation of the MatchRule (D-Bus variant map).
 func (p *MatchRule) String() string {
 	strslice := []string{}
 
 	v := reflect.Indirect(reflect.ValueOf(p))
 	t := v.Type()
 	for i := 0; i < v.NumField(); i++ {
-		strslice = append(strslice, (fmt.Sprintf("%s='%v'", strings.ToLower(t.Field(i).Name), v.Field(i).Interface())))
+		val := v.Field(i).Interface()
+		if val != "" {
+			strslice = append(strslice, (fmt.Sprintf("%s='%v'", strings.ToLower(t.Field(i).Name), val)))
+		}
 	}
 
 	return strings.Join(strslice, ",")
